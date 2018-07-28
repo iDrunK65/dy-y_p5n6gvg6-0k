@@ -8,11 +8,12 @@ module.exports.run = async (bot, message, args) => {
     if(!rreason) return message.channel.send("Il faut un motif !");
 
     let reportEmbed = new Discord.RichEmbed()
-    .setTitle("Signalement") 
+    .setTitle("~ Signalement ~") 
     .setColor("#15f153")
-    .addField("Joueur signalé", `${rUser} (ID: ${rUser.id})`)
-    .addField("Signalé par", `${message.author} (ID: ${message.author.id})`)
-    .addField("Signalé à", message.createdAt)
+    .addField("Joueur signalé", `${rUser}`,true)
+    .addField("Signalé par", `${message.author}`, true)
+    .addField("Signalé à", new Date())
+    .addField("Channel du report", message.channel)
     .addField("Motif", rreason)
     .setFooter(`Made by ${botconfig.author} | Version ${botconfig.version}`)
     .setTimestamp();
