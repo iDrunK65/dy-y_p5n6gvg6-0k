@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter(`Made by ${botconfig.author} | Version ${botconfig.version}`)
         .setTimestamp();
     
-        MUser.removeRole(muterole.id);
+        wUser.removeRole(muterole.id);
         warnchannel.send(WUnmuteEmbed)
         console.log(`[STAFF] ${wUser.user.tag} n'est plus mute de ${message.guild.name}`)
       }, ms(mutetime));
