@@ -5,24 +5,24 @@ const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
-  fs.readdir("./commandes/", (err, files) => {
+fs.readdir("./commandes/", (err, files) => {
 
-    if(err) console.log(err);
-  
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if(jsfile.length <= 0){
-      console.log("Aucune commende trouvé !");
-      return;
-    }
+  if(err) console.log(err);
 
-    console.log(`========== Commandes activé ==========`)
-    jsfile.forEach((f, i) =>{
-      let props = require(`./commandes/${f}`);
-      console.log(`[CMD] ${f}`);
-      bot.commands.set(props.help.name, props);
-    });
-  
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.length <= 0){
+    console.log("Aucune commende trouvé !");
+    return;
+  }
+
+  console.log(`========== Commandes activé ==========`)
+  jsfile.forEach((f, i) =>{
+    let props = require(`./commandes/${f}`);
+    console.log(`[CMD] ${f}`);
+    bot.commands.set(props.help.name, props);
   });
+
+});
 
 bot.on("ready", async () => {
     console.log(`============ Informations ============`)

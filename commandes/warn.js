@@ -71,13 +71,16 @@ module.exports.run = async (bot, message, args) => {
         console.log(`[STAFF] ${wUser.user.tag} n'est plus mute de ${message.guild.name}`)
       }, ms(mutetime));
   }
-  if(warns[wUser.id].warns == 5){
-    message.guild.member(wUser).ban(reason);
-    message.reply(`<@${wUser.id}> has been banned.`)
-  }
-
 }
 
+module.exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    permLevel: 0
+};
+  
 module.exports.help = {
-  name: "warn"
+  name: 'warn',
+  description: 'Permet d\'avertir une personne du discord.',
+  usage: 'warn @pseudo#xxxx motif',
 }
